@@ -5,37 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baldi's Basics Archive</title>
     <style>
-        /* Плавная прокрутка */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: #100b14;
             font-family: 'Segoe UI', sans-serif;
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         /* Навигация */
         nav {
             background-color: #1a151f;
             width: 100%;
-            display: flex;
-            justify-content: center;
+            display: flex; justify-content: center;
             padding: 20px 0;
             border-bottom: 1px solid #2d2435;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
+            position: fixed; top: 0; z-index: 1000;
         }
 
         nav a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             margin: 0 15px;
             font-size: 15px;
@@ -45,28 +35,21 @@
             border-bottom: 2px solid transparent;
         }
 
-        nav a:hover {
-            color: #ffffff;
-        }
-
+        /* Класс активной вкладки */
         nav a.active {
             color: #ffffff;
             border-bottom: 2px solid #a855f7;
         }
 
-        /* Контейнер для секций */
         .section {
-            min-height: 80vh; /* Каждая секция почти на весь экран */
+            min-height: 100vh;
             width: 100%;
             max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
             text-align: center;
-            padding: 100px 20px;
+            padding: 20px;
             box-sizing: border-box;
-            border-bottom: 1px solid #1a151f;
         }
 
         .download-btn {
@@ -78,65 +61,80 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 18px;
             transition: 0.3s;
         }
 
-        .download-btn:hover {
-            background-color: #9333ea;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
-        }
-
+        .download-btn:hover { background-color: #9333ea; transform: scale(1.05); }
         h2 { font-size: 32px; color: #a855f7; }
-        p { line-height: 1.6; color: #ccc; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="active">Главная</a>
+    <nav id="main-nav">
+        <a href="#home" class="active">Главная</a>
         <a href="#features">Возможности</a>
         <a href="#gallery">Галерея</a>
         <a href="#download">Скачать</a>
         <a href="#about">О проекте</a>
     </nav>
 
-    <div class="section" id="home">
-        <h1>Baldi's Basics Archive (WIP)</h1>
-        <p>Добро пожаловать в крупнейший архив материалов по Baldi's Basics.</p>
-    </div>
+    <section class="section" id="home">
+        <h1>Baldi's Basics Archive</h1>
+        <p>Главная страница проекта.</p>
+    </section>
 
-    <div class="section" id="features">
+    <section class="section" id="features">
         <h2>Возможности</h2>
-        <p>Здесь вы найдете редкие билды, моды и исходники проекта.</p>
-        <ul style="text-align: left; display: inline-block;">
-            <li>Полная коллекция версий</li>
-            <li>Удобная структура архива</li>
-            <li>Прямой доступ к файлам</li>
-        </ul>
-    </div>
+        <p>Описание фишек и контента.</p>
+    </section>
 
-    <div class="section" id="gallery">
+    <section class="section" id="gallery">
         <h2>Галерея</h2>
-        <p>Скриншоты содержимого архива (скоро появятся).</p>
-        <div style="width: 100px; height: 100px; border: 2px dashed #333; display: flex; align-items: center; justify-content: center;">
-            IMG
-        </div>
-    </div>
+        <p>Скриншоты будут здесь.</p>
+    </section>
 
-    <div class="section" id="download">
+    <section class="section" id="download">
         <h2>Скачать</h2>
-        <p>Размер файла: 7.3 ГБ. Ссылка ведет на Google Диск.</p>
-        <a href="https://drive.google.com/uc?export=download&id=1HNMlLN1rdz3fr7JLGqGAKUK4k5x7fAJR" class="download-btn" target="_blank">
-            СКАЧАТЬ СЕЙЧАС
-        </a>
-    </div>
+        <a href="https://drive.google.com/uc?export=download&id=1HNMlLN1rdz3fr7JLGqGAKUK4k5x7fAJR" class="download-btn" target="_blank">СКАЧАТЬ (7.3 ГБ)</a>
+    </section>
 
-    <div class="section" id="about">
+    <section class="section" id="about">
         <h2>О проекте</h2>
-        <p>Создано terfas13 для фанатов и разработчиков модов.</p>
-    </div>
+        <p>Создано terfas13.</p>
+    </section>
+
+    <script>
+        // Скрипт для "умного" подчеркивания
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Плавное переключение класса при клике
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
