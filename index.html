@@ -3,117 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив Baldi's Basics</title>
+    <title>Baldi's Basics Archive</title>
     <style>
-        /* Общие стили для всей страницы (Темная тема) */
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background-color: #100b14; /* Темно-фиолетовый фон как на скрине */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Шрифт */
+            background-color: #100b14;
+            font-family: 'Segoe UI', sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Стиль самого контейнера МЕНЮ */
+        /* Навигация */
         nav {
-            background-color: #1a151f; /* Чуть светлее фона, чтобы выделить меню */
+            background-color: #1a151f;
             width: 100%;
             display: flex;
-            justify-content: center; /* Центрируем вкладки */
-            padding: 20px 0; /* Отступы сверху и снизу */
-            border-bottom: 1px solid #2d2435; /* Тонкая линия снизу */
-            position: fixed; /* Прижимаем меню к верху */
+            justify-content: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #2d2435;
+            position: fixed;
             top: 0;
             z-index: 1000;
         }
 
-        /* Стиль КНОПОК-ВКЛАДОК (ссылок) в меню */
         nav a {
-            color: rgba(255, 255, 255, 0.8); /* Белый, чуть прозрачный */
-            text-decoration: none; /* Убираем подчеркивание */
-            margin: 0 20px; /* Отступы между кнопками */
-            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
             font-weight: 500;
-            padding-bottom: 8px; /* Место для фиолетовой полоски */
-            transition: all 0.3s ease; /* Плавная анимация при наведении */
-            border-bottom: 2px solid transparent; /* Скрытая полоска по умолчанию */
+            padding-bottom: 8px;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
         }
 
-        /* Эффект при НАВЕДЕНИИ мышки на вкладку */
         nav a:hover {
-            color: #ffffff; /* Делаем текст ярко-белым */
+            color: #ffffff;
         }
 
-        /* Стиль для АКТИВНОЙ вкладки (там где фиолетовая полоса) */
-        /* По умолчанию активна "Главная" */
         nav a.active {
-            color: #ffffff; /* Текст белый */
-            border-bottom: 2px solid #a855f7; /* Та самая ФИОЛЕТОВАЯ ПОЛОСКА */
+            color: #ffffff;
+            border-bottom: 2px solid #a855f7;
         }
 
-        /* Место для основного контента (чтобы меню его не закрывало) */
-        .content {
-            margin-top: 100px; /* Отступ сверху равный высоте меню */
+        /* Контейнер для секций */
+        .section {
+            min-height: 80vh; /* Каждая секция почти на весь экран */
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 20px;
-            max-width: 800px;
+            padding: 100px 20px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #1a151f;
         }
 
-        /* Красивая кнопка скачивания */
         .download-btn {
             display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            background-color: #a855f7; /* Фиолетовый цвет как у полоски */
+            margin-top: 20px;
+            padding: 15px 40px;
+            background-color: #a855f7;
             color: white;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
             font-size: 18px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: 0.3s;
         }
 
         .download-btn:hover {
-            background-color: #9333ea; /* Чуть темнее при наведении */
-            transform: scale(1.05); /* Кнопка чуть увеличивается */
+            background-color: #9333ea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
         }
 
+        h2 { font-size: 32px; color: #a855f7; }
+        p { line-height: 1.6; color: #ccc; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="active">Главная</a>
+        <a href="#" class="active">Главная</a>
         <a href="#features">Возможности</a>
         <a href="#gallery">Галерея</a>
-        <a href="index.html#download">Скачать</a>
+        <a href="#download">Скачать</a>
         <a href="#about">О проекте</a>
     </nav>
 
-    <div class="content">
-        <h1>Baldi's Basics Archive (WIP) v0.1</h1>
-        <p>Добро пожаловать на страницу архива проекта.</p>
-        
-        <br><br><br>
-        
-        <h2 id="download">Скачать архив</h2>
-        <p>Нажмите на кнопку ниже. Из-за размера файла (7.3 ГБ) Google выдаст предупреждение о вирусах — это нормально, просто подтвердите скачивание.</p>
-        
-        <a href="https://drive.google.com/uc?export=download&id=1HNMlLN1rdz3fr7JLGqGAKUK4k5x7fAJR" class="download-btn" target="_blank">
-            СКАЧАТЬ (.ZIP 7.3 ГБ)
-        </a>
-    <div id="features" style="margin-top: 100vh; padding: 50px;">
-    <h2>Возможности</h2>
-    <p>Тут будет текст о фишках твоего архива...</p>
-</div>
+    <div class="section" id="home">
+        <h1>Baldi's Basics Archive (WIP)</h1>
+        <p>Добро пожаловать в крупнейший архив материалов по Baldi's Basics.</p>
+    </div>
 
-<div id="gallery" style="margin-top: 100vh; padding: 50px;">
-    <h2>Галерея</h2>
-    <p>Тут можно будет разместить скриншоты.</p>
-</div>
+    <div class="section" id="features">
+        <h2>Возможности</h2>
+        <p>Здесь вы найдете редкие билды, моды и исходники проекта.</p>
+        <ul style="text-align: left; display: inline-block;">
+            <li>Полная коллекция версий</li>
+            <li>Удобная структура архива</li>
+            <li>Прямой доступ к файлам</li>
+        </ul>
+    </div>
+
+    <div class="section" id="gallery">
+        <h2>Галерея</h2>
+        <p>Скриншоты содержимого архива (скоро появятся).</p>
+        <div style="width: 100px; height: 100px; border: 2px dashed #333; display: flex; align-items: center; justify-content: center;">
+            IMG
+        </div>
+    </div>
+
+    <div class="section" id="download">
+        <h2>Скачать</h2>
+        <p>Размер файла: 7.3 ГБ. Ссылка ведет на Google Диск.</p>
+        <a href="https://drive.google.com/uc?export=download&id=1HNMlLN1rdz3fr7JLGqGAKUK4k5x7fAJR" class="download-btn" target="_blank">
+            СКАЧАТЬ СЕЙЧАС
+        </a>
+    </div>
+
+    <div class="section" id="about">
+        <h2>О проекте</h2>
+        <p>Создано terfas13 для фанатов и разработчиков модов.</p>
+    </div>
 
 </body>
 </html>
