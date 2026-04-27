@@ -35,7 +35,6 @@
             border-bottom: 2px solid transparent;
         }
 
-        /* Класс активной вкладки */
         nav a.active {
             color: #ffffff;
             border-bottom: 2px solid #a855f7;
@@ -48,7 +47,7 @@
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 80px 20px 20px; /* Добавили отступ сверху из-за фиксированного меню */
             box-sizing: border-box;
         }
 
@@ -73,7 +72,9 @@
     <nav id="main-nav">
         <a href="#home" class="active">Home</a>
         <a href="#download">Download</a>
-        <a href="#about">Mod Packs</a>
+        <a href="#modpacks">Mod Packs</a> <!-- Исправлено: ID совпадает с секцией -->
+        <a href="#bbver">BB+ Versions</a> 
+        <a href="#update">Next Update</a>
     </nav>
 
     <section class="section" id="home">
@@ -100,10 +101,15 @@
     <section class="section" id="bbver">
         <h2>BB+ Versions</h2>
         <p>Download any Baldi's Basics Plus version:</p>
+        
     </section>
 
+    <section class="section" id="update">
+        <h2>Next Update</h2>
+        <p>Next update planned on 4/29/26</p>
+        <p>WARNING: This is may be not true date.</p>
+
     <script>
-        // Скрипт для "умного" подчеркивания
         const sections = document.querySelectorAll('.section');
         const navLinks = document.querySelectorAll('nav a');
 
@@ -113,20 +119,20 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                // Смещение 100px для более точного срабатывания подсветки
+                if (pageYOffset >= (sectionTop - 100)) {
                     current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if (link.getAttribute('href') === `#${current}`) {
                     link.classList.add('active');
                 }
             });
         });
 
-        // Плавное переключение класса при клике
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 navLinks.forEach(l => l.classList.remove('active'));
